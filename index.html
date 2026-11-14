@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff9fc">
+<title>Bellflower Academy | The Thirteenth Bell</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+:root{--pink:#d98eae;--dark-pink:#a9567d;--lavender:#b99fc9;--light:#fff9fc;--pale:#f5eaf3;--text:#493d50;--muted:#88788d}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{background:var(--light);color:var(--text);font-family:'DM Sans',sans-serif}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+img{max-width:100%;display:block}
+section{padding:75px 7%;scroll-margin-top:90px}
+nav{position:sticky;top:0;z-index:20;background:rgba(255,249,252,.98);border-bottom:1px solid #eadce9;padding:16px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:var(--dark-pink);white-space:nowrap}
+.nav-links{display:flex;gap:15px;flex-wrap:wrap;justify-content:flex-end}
+.nav-links a{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+.nav-links a:hover,footer a:hover{color:var(--dark-pink)}
+.section-title{text-align:center;margin-bottom:38px}
+.section-title h2{font-family:'Playfair Display',serif;font-size:clamp(27px,4vw,39px);color:var(--dark-pink)}
+.section-title p{color:var(--muted);font-size:13px;margin-top:8px}
+.small-label{text-transform:uppercase;letter-spacing:3px;font-size:10px;color:var(--dark-pink);font-weight:700}
+.button,.view-button{display:inline-block;padding:12px 21px;border-radius:30px;background:var(--dark-pink);color:white;font-size:12px;font-weight:700;border:1px solid var(--dark-pink);cursor:pointer;transition:.2s;text-align:center}
+.button:hover,.view-button:hover{transform:translateY(-3px)}
+.button.secondary{background:transparent;color:var(--dark-pink)}
+.hero{min-height:550px;padding:70px 7%;display:grid;grid-template-columns:1fr 1.1fr;align-items:center;gap:35px;background:#f0e2f0;overflow:hidden;scroll-margin-top:90px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(42px,7vw,76px);line-height:1.05;color:#795d83;margin:17px 0}
+.hero p{max-width:430px;line-height:1.8;color:#75647c;font-size:14px}
+.hero-buttons{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.hero-art{display:flex;align-items:center;justify-content:center;gap:12px;min-height:330px}
+.portrait{background:linear-gradient(145deg,#d9c3df,#b99fc9);border:5px solid rgba(255,255,255,.75);display:flex;justify-content:center;align-items:center;color:white;font-family:'Playfair Display',serif;font-size:32px;overflow:hidden;box-shadow:0 5px 18px rgba(91,61,100,.10)}
+.hero-art .portrait{width:31%;max-width:175px;height:260px;border-radius:90px 90px 18px 18px}
+.hero-art .portrait:nth-child(2){transform:translateY(-22px)}
+.portrait img{width:100%;height:100%;object-fit:cover}
+.image-box{min-height:270px;border-radius:15px;background:linear-gradient(140deg,#e7d4e9,#c6aecf);display:flex;align-items:center;justify-content:center;color:white;font-family:'Playfair Display',serif;font-size:20px;overflow:hidden}
+.image-box img{width:100%;height:100%;min-height:270px;object-fit:cover}
+.about{background:white}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center;max-width:1050px;margin:auto}
+.about-text h3{font-family:'Playfair Display',serif;font-size:29px;color:var(--dark-pink);margin:12px 0}
+.about-text p{color:var(--muted);font-size:14px;line-height:1.9;margin-bottom:16px}
+.story{background:#fff9fc}
+.story-box{max-width:850px;margin:auto;text-align:center;background:white;border:1px solid #eadce9;border-radius:16px;padding:35px}
+.story-box p{color:var(--muted);font-size:14px;line-height:1.9;margin-top:15px}
+.card-grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:18px}
+.character-card,.person-card,.gallery-card,.episode-card{background:#fff9fc;border:1px solid #e5d3e5;padding:10px;border-radius:12px;text-align:center;transition:.2s;overflow:hidden;min-width:0}
+.character-card:hover,.person-card:hover,.gallery-card:hover,.episode-card:hover{transform:translateY(-5px);box-shadow:0 8px 20px #a78aab25}
+.character-card .portrait,.person-card .portrait{height:145px;border-radius:8px;font-size:24px}
+.character-card h3,.person-card h3,.gallery-card h3,.episode-card h3{margin-top:11px;font-family:'Playfair Display',serif;font-size:16px;color:var(--dark-pink)}
+.character-card p,.person-card p,.gallery-card p,.episode-card p{font-size:10px;color:var(--muted);margin-top:4px;line-height:1.6}
+.view-area{text-align:center;margin-top:30px}
+.view-button{background:transparent;color:var(--dark-pink)}
+.view-button:hover{background:var(--dark-pink);color:white}
+.voice-grid{max-width:1000px;margin:auto;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:17px}
+.person-card .portrait{height:130px}
+.crew{background:#eee1ef}
+.episodes{background:white}
+.gallery{background:#eee1ef}
+.gallery-card{padding:0}
+.gallery-card img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#d9c3df}
+.gallery-card h3{padding:0 10px 12px}
+.quick-links{background:#e8d9eb;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.quick-card{background:rgba(255,255,255,.65);padding:25px 15px;border-radius:12px;text-align:center;transition:.2s;display:block}
+.quick-card:hover{transform:translateY(-4px)}
+.quick-card h3{font-family:'Playfair Display',serif;color:var(--dark-pink);margin-bottom:9px}
+.quick-card p{font-size:12px;line-height:1.6;color:var(--muted)}
+.updates{background:#f3e8f3}
+.update-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;max-width:1100px;margin:auto}
+.update-card{background:white;border-radius:12px;overflow:hidden;border:1px solid #eadce9}
+.update-image{height:145px;background:linear-gradient(140deg,#d9c3df,#b99fc9);display:flex;align-items:center;justify-content:center;color:white;font-family:'Playfair Display',serif;overflow:hidden}
+.update-image img{width:100%;height:100%;object-fit:cover}
+.update-content{padding:17px}
+.update-content small{color:var(--dark-pink);font-size:10px}
+.update-content h3{font-family:'Playfair Display',serif;font-size:17px;margin:8px 0}
+.update-content p{font-size:12px;color:var(--muted);line-height:1.6}
+.music{background:white;text-align:center}
+.music p{color:var(--muted);font-size:13px;margin:12px auto 22px}
+.discord{background:#c3a9ce;color:white;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:25px}
+.discord h2{font-family:'Playfair Display',serif;font-size:30px;margin:8px 0}
+.discord p{font-size:13px;line-height:1.7;max-width:500px}
+.discord .button{background:white;color:var(--dark-pink)}
+.contact{background:#f3e8f3}
+.social-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;max-width:1000px;margin:auto}
+.social-group,.contact-box{background:white;border:1px solid #eadce9;border-radius:16px;padding:26px;text-align:center}
+.social-group h3,.contact-box h3{font-family:'Playfair Display',serif;font-size:22px;color:var(--dark-pink);margin-bottom:10px}
+.social-group p,.contact-box p{color:var(--muted);font-size:13px;line-height:1.7}
+.social-links{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:20px}
+.social-links a{color:var(--dark-pink);background:#f5eaf3;border-radius:25px;padding:9px 16px;font-size:12px;font-weight:700;transition:.2s}
+.social-links a:hover{background:var(--dark-pink);color:white}
+.contact-box{max-width:1000px;margin:22px auto 0}
+.contact-box a{color:var(--dark-pink);font-weight:700;overflow-wrap:anywhere}
+footer{background:#493d50;color:#f8edf7;padding:45px 7% 20px}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px}
+footer h3{font-family:'Playfair Display',serif;margin-bottom:14px;color:#e8c9df}
+footer p,footer a{display:block;font-size:12px;line-height:2;color:#d5c5d8}
+footer a:hover{color:white}
+.copyright{text-align:center;border-top:1px solid #716477;padding-top:18px;margin-top:35px;font-size:11px;color:#c5b5c9}
+.empty-note{grid-column:1/-1;text-align:center;color:var(--muted);font-size:13px;padding:20px}
+[hidden]{display:none!important}
+@media(max-width:950px){.card-grid,.voice-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:800px){nav{flex-direction:column}.nav-links{justify-content:center;gap:13px}.hero{grid-template-columns:1fr;text-align:center}.hero p{margin:auto}.hero-buttons{justify-content:center}.hero-art{min-height:240px}.hero-art .portrait{height:210px}.about-grid{grid-template-columns:1fr}.quick-links{grid-template-columns:repeat(2,minmax(0,1fr))}.update-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.footer-grid{grid-template-columns:repeat(2,1fr)}.social-groups{grid-template-columns:1fr}}
+@media(max-width:520px){section{padding:55px 5%}.card-grid,.voice-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.character-card .portrait{height:135px}.update-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero h1{font-size:43px}.footer-grid{grid-template-columns:1fr 1fr}.hero-art .portrait{height:175px}.nav-links a{font-size:10px}}
+</style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <a href="#home" class="logo">Bellflower Academy</a>
+  <div class="nav-links">
+    <a href="#home">Home</a><a href="#about">About</a><a href="#story">Story</a>
+    <a href="#characters">Characters</a><a href="#voice">Voice Actors</a>
+    <a href="#crew">Crew</a><a href="#episodes">Episodes</a>
+    <a href="#gallery">Gallery</a><a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <div>
+    <span class="small-label">A Gacha Voice Acting Series</span>
+    <h1>The Thirteenth Bell</h1>
+    <p>Every school has its secrets. Discover the students, friendships and mysteries hidden within Bellflower Academy. One bell can change everything.</p>
+    <div class="hero-buttons">
+      <a class="button" href="#story">Discover the Story</a>
+      <a class="button secondary" href="https://discord.gg/ACYYtCnd7t" target="_blank" rel="noopener noreferrer">Join our Discord</a>
+    </div>
+  </div>
+  <div class="hero-art">
+    <div class="portrait"><img src="images/hero-1.png" alt="Series character"></div>
+    <div class="portrait"><img src="images/hero-2.png" alt="Series character"></div>
+    <div class="portrait"><img src="images/hero-3.png" alt="Series character"></div>
+  </div>
+</header>
+
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <span class="small-label">A story waiting to unfold</span><h3>About the Series</h3>
+      <p>Welcome to Bellflower Academy, a school with a history that nobody seems to remember.</p>
+      <p>When an unusual event brings an old mystery to light, a group of students begins uncovering secrets that were meant to stay forgotten.</p>
+      <p>Friendship, school life, mystery and unexpected discoveries all come together in The Thirteenth Bell.</p>
+      <a href="#characters" class="button">Meet the Characters</a>
+    </div>
+    <div class="image-box"><img src="images/academy.png" alt="Bellflower Academy illustration"></div>
+  </div>
+</section>
+
+<section class="story" id="story">
+  <div class="section-title"><span class="small-label">A forgotten history</span><h2>Story &amp; Lore</h2><p>Some secrets were never meant to be uncovered.</p></div>
+  <div class="story-box">
+    <span class="small-label">The Thirteenth Bell</span>
+    <h2 style="font-family:'Playfair Display',serif;color:#795d83;margin-top:10px">The Mystery of Bellflower</h2>
+    <p>Bellflower Academy seems like an ordinary school. Its students follow their routines, attend classes and pass through familiar hallways.</p>
+    <p>Yet the old west wing remains forbidden. Strange sounds are sometimes heard behind its doors, and nobody seems willing to explain why.</p>
+    <p>On the first day of a new school year, the bell rings thirteen times. Soon after, an old photograph is found. Eleven students appear in it, alongside a mysterious note: "One of you already knows what happened."</p>
+    <p>Twenty years of forgotten history are about to come back to the surface.</p>
+  </div>
+</section>
+
+<section class="characters" id="characters">
+  <div class="section-title"><span class="small-label">Get to know them</span><h2>Meet the Characters</h2><p>Every student has a story of their own.</p></div>
+  <div class="card-grid" id="character-grid"></div>
+  <div class="view-area"><button type="button" class="view-button" id="character-button" onclick="toggleSection('characters')">View All Characters</button></div>
+</section>
+
+<section class="voice-actors" id="voice">
+  <div class="section-title"><span class="small-label">Behind every voice</span><h2>Meet the Voice Actors</h2><p>Get to know the talented people bringing our characters to life.</p></div>
+  <div class="card-grid voice-grid" id="voice-grid"></div>
+  <div class="view-area"><button type="button" class="view-button" id="voice-button" onclick="toggleSection('voice')">View All Voice Actors</button></div>
+</section>
+
+<section class="crew" id="crew">
+  <div class="section-title"><span class="small-label">Behind the scenes</span><h2>Our Production Crew</h2><p>Meet the people helping bring this story to life.</p></div>
+  <div class="card-grid" id="crew-grid"></div>
+  <div class="view-area"><button type="button" class="view-button" id="crew-button" onclick="toggleSection('crew')">View All Crew</button></div>
+</section>
+
+<section class="episodes" id="episodes">
+  <div class="section-title"><span class="small-label">The story continues</span><h2>Episodes</h2><p>Follow the events unfolding at Bellflower Academy.</p></div>
+  <div class="card-grid" id="episode-grid"></div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="section-title"><span class="small-label">A glimpse into our world</span><h2>Art Gallery</h2><p>Artwork, illustrations and moments from the series.</p></div>
+  <div class="card-grid" id="gallery-grid"></div>
+  <div class="view-area"><button type="button" class="view-button" id="gallery-button" onclick="toggleSection('gallery')">View All Artwork</button></div>
+</section>
+
+<section class="quick-links" id="quick-links">
+  <a href="#story" class="quick-card"><h3>Story &amp; Lore</h3><p>Discover the world and history of Bellflower Academy.</p></a>
+  <a href="#episodes" class="quick-card"><h3>Episodes</h3><p>Follow the story as each new episode is released.</p></a>
+  <a href="#gallery" class="quick-card"><h3>Gallery</h3><p>Explore artwork, scenes and behind-the-scenes moments.</p></a>
+  <a href="#music" class="quick-card"><h3>Music</h3><p>Discover music and playlists connected to our project.</p></a>
+</section>
+
+<section class="updates" id="updates">
+  <div class="section-title"><span class="small-label">From the academy</span><h2>Latest Updates</h2><p>News and announcements from our production team.</p></div>
+  <div class="update-grid">
+    <article class="update-card"><div class="update-image">Update 01</div><div class="update-content"><small>PRODUCTION NEWS</small><h3>Something is happening...</h3><p>Keep an eye on this space for our latest news.</p></div></article>
+    <article class="update-card"><div class="update-image">Update 02</div><div class="update-content"><small>CASTING</small><h3>Voice Actor News</h3><p>Updates about our cast and upcoming auditions.</p></div></article>
+    <article class="update-card"><div class="update-image">Update 03</div><div class="update-content"><small>ARTWORK</small><h3>Behind the Scenes</h3><p>A little look into the creative side of our series.</p></div></article>
+    <article class="update-card"><div class="update-content"><small>ANNOUNCEMENT</small><h3>More to Come</h3><p>Stay tuned for more news from Bellflower Academy.</p></div></article>
+  </div>
+</section>
+
+<section class="music" id="music">
+  <div class="section-title"><span class="small-label">Listen along</span><h2>Music</h2><p>Discover the music and playlists shared by the director.</p></div>
+  <a class="button" href="https://open.spotify.com/user/31yl65ty4f3te7vxhrzfecdmzkgq?si=R4T2AgrAT2W91M-grrUYAw" target="_blank" rel="noopener noreferrer">Visit Spotify</a>
+</section>
+
+<section class="discord" id="discord">
+  <div><span class="small-label" style="color:white">Be part of our community</span><h2>Join our Official Discord Server</h2><p>Meet the community, follow production updates, share your theories and become part of the story.</p></div>
+  <a class="button" href="https://discord.gg/ACYYtCnd7t" target="_blank" rel="noopener noreferrer">JOIN THE DISCORD</a>
+</section>
+
+<section class="contact" id="contact">
+  <div class="section-title"><span class="small-label">Stay connected</span><h2>Find Us Beyond the Bell</h2><p>Follow the journey of The Thirteenth Bell.</p></div>
+  <div class="social-groups">
+    <div class="social-group"><h3>Official Series Accounts</h3><p>Follow the official accounts for series updates, announcements and new episodes.</p><div class="social-links">
+      <a href="https://www.instagram.com/thethirteenthbell.series/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://www.tiktok.com/@thirteenthbellseries" target="_blank" rel="noopener noreferrer">TikTok</a>
+      <a href="https://youtube.com/@thethirteenthbell_series?si=jtFEWeb4V6cFYRIr" target="_blank" rel="noopener noreferrer">YouTube</a>
+      <a href="https://discord.gg/ACYYtCnd7t" target="_blank" rel="noopener noreferrer">Discord</a>
+      <a href="https://whatsapp.com/channel/0029Vb8GRst8V0tfhBFFUJ0t" target="_blank" rel="noopener noreferrer">WhatsApp Channel</a>
+    </div></div>
+    <div class="social-group"><h3>Director's Socials</h3><p>Discover the director's personal accounts and creative inspirations.</p><div class="social-links">
+      <a href="https://www.instagram.com/nlp.edits?obrf=MnFjNWkycnJhOWx1&amp;utm_source=qr" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://www.tiktok.com/@nlp.edits?_r=1&amp;_t=ZG-9BPIZUqIr2X" target="_blank" rel="noopener noreferrer">TikTok</a>
+      <a href="https://pin.it/75EiF5VVN" target="_blank" rel="noopener noreferrer">Pinterest</a>
+      <a href="https://open.spotify.com/user/31yl65ty4f3te7vxhrzfecdmzkgq?si=R4T2AgrAT2W91M-grrUYAw" target="_blank" rel="noopener noreferrer">Spotify</a>
+      <a href="https://snapchat.com/t/LALS5q7p" target="_blank" rel="noopener noreferrer">Snapchat</a>
+    </div></div>
+  </div>
+  <div class="contact-box"><h3>Contact the Academy</h3><p>For general questions and inquiries:</p><a href="mailto:thethirteenthbell.serie@gmail.com">thethirteenthbell.serie@gmail.com</a></div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div><h3>Bellflower Academy</h3><p>Where every bell tells a story.</p><p>A Gacha Voice Acting Series.</p></div>
+    <div><h3>Academy</h3><a href="#home">Home</a><a href="#about">About</a><a href="#story">Story &amp; Lore</a><a href="#characters">Characters</a></div>
+    <div><h3>Production</h3><a href="#voice">Voice Actors</a><a href="#crew">Crew</a><a href="#episodes">Episodes</a><a href="#gallery">Gallery</a></div>
+    <div><h3>Connect</h3><a href="#updates">Updates</a><a href="#music">Music</a><a href="#discord">Discord</a><a href="#contact">Contact &amp; Socials</a></div>
+  </div>
+  <div class="copyright">© 2026 Bellflower Academy · The Thirteenth Bell<br>Where Every Bell Tells a Story.</div>
+</footer>
+
+<script>
+const characters = [
+  {name:"Mika",role:"Student",image:"images/mika.png"},
+  {name:"Elliot",role:"Student",image:"images/elliot.png"},
+  {name:"Nora",role:"Student",image:"images/nora.png"},
+  {name:"Leo",role:"Student",image:"images/leo.png"},
+  {name:"Maeve",role:"Student",image:"images/maeve.png"},
+  {name:"Rowan",role:"Student",image:"images/rowan.png"},
+  {name:"Beckett",role:"Student",image:"images/beckett.png"},
+  {name:"Lily",role:"Student",image:"images/lily.png"},
+  {name:"Jude",role:"Student",image:"images/jude.png"},
+  {name:"Violet",role:"Student",image:"images/violet.png"},
+  {name:"Ashton / Ash",role:"Student",image:"images/ash.png"},
+  {name:"Silas",role:"Student",image:"images/silas.png"}
+];
+const voiceActors = [];
+const crewMembers = [];
+const artworks = [];
+const episodes = [
+  {name:"Episode 01",role:"Coming Soon",image:""},
+  {name:"Episode 02",role:"Coming Soon",image:""},
+  {name:"Episode 03",role:"Coming Soon",image:""}
+];
+
+const settings = {
+  characters:{items:characters,grid:"character-grid",button:"character-button",limit:6,type:"person"},
+  voice:{items:voiceActors,grid:"voice-grid",button:"voice-button",limit:8,type:"person"},
+  crew:{items:crewMembers,grid:"crew-grid",button:"crew-button",limit:6,type:"person"},
+  gallery:{items:artworks,grid:"gallery-grid",button:"gallery-button",limit:6,type:"gallery"}
+};
+const expanded = {characters:false,voice:false,crew:false,gallery:false};
+
+function createImage(path,alt){
+  const image=document.createElement("img");
+  image.alt=alt||"Bellflower image";
+  image.src=path;
+  image.onerror=function(){this.remove();};
+  return image;
+}
+function makeCard(item,type){
+  const card=document.createElement("article");
+  card.className=type==="gallery"?"gallery-card":"person-card";
+  const portrait=document.createElement("div");
+  portrait.className="portrait";
+  if(item.image){portrait.appendChild(createImage(item.image,item.name));}
+  else{portrait.textContent=item.name?item.name.charAt(0):"?";}
+  card.appendChild(portrait);
+  const heading=document.createElement("h3");
+  heading.textContent=item.name||"Name TBA";
+  card.appendChild(heading);
+  if(item.role){const description=document.createElement("p");description.textContent=item.role;card.appendChild(description);}
+  return card;
+}
+function makeGalleryCard(item){
+  const card=document.createElement("article");
+  card.className="gallery-card";
+  if(item.image){card.appendChild(createImage(item.image,item.name));}
+  else{const placeholder=document.createElement("div");placeholder.className="image-box";placeholder.textContent="Artwork coming soon";card.appendChild(placeholder);}
+  const heading=document.createElement("h3");heading.textContent=item.name||"Untitled Artwork";card.appendChild(heading);
+  return card;
+}
+function renderSection(key){
+  const section=settings[key];
+  const grid=document.getElementById(section.grid);
+  const button=document.getElementById(section.button);
+  if(!grid||!button)return;
+  grid.innerHTML="";
+  const items=expanded[key]?section.items:section.items.slice(0,section.limit);
+  if(section.items.length===0){
+    const note=document.createElement("p");note.className="empty-note";note.textContent="More information will be added soon.";grid.appendChild(note);
+  }else{
+    items.forEach(item=>grid.appendChild(key==="gallery"?makeGalleryCard(item):makeCard(item,section.type)));
+  }
+  button.hidden=section.items.length<=section.limit;
+  button.textContent=expanded[key]?"Show Less":
+    key==="gallery"?"View All Artwork":
+    key==="voice"?"View All Voice Actors":
+    key==="crew"?"View All Crew":"View All Characters";
+}
+function toggleSection(key){
+  if(!Object.prototype.hasOwnProperty.call(settings,key))return;
+  expanded[key]=!expanded[key];
+  renderSection(key);
+}
+Object.keys(settings).forEach(renderSection);
+
+const episodeGrid=document.getElementById("episode-grid");
+episodes.forEach(episode=>{
+  const card=document.createElement("article");card.className="episode-card";
+  const image=document.createElement("div");image.className="image-box";
+  if(episode.image){image.appendChild(createImage(episode.image,episode.name));}
+  else{image.textContent="Coming Soon";}
+  const title=document.createElement("h3");title.textContent=episode.name;
+  const description=document.createElement("p");description.textContent=episode.role;
+  card.append(image,title,description);episodeGrid.appendChild(card);
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(link=>{
+  link.addEventListener("click",event=>{
+    const targetId=decodeURIComponent(link.getAttribute("href").slice(1));
+    const target=document.getElementById(targetId);
+    if(target){
+      event.preventDefault();
+      target.scrollIntoView({behavior:"smooth",block:"start"});
+      history.replaceState(null,"","#"+targetId);
+    }
+  });
+});
+</script>
+</body>
+</html>
